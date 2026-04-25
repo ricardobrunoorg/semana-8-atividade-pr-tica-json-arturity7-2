@@ -219,3 +219,60 @@ const todosTemGenero = catalogo.every(function(item) {
   return item.generos.length >= 1;
 });
 console.log("Todos os itens têm pelo menos 1 gênero?", todosTemGenero);
+
+
+// ============================================================
+// B.4 - SAÍDA NA TELA (DOM)
+// ============================================================
+// Aqui vamos montar um resumo em HTML e jogar dentro da <div id="output">
+// innerHTML permite escrever HTML como texto dentro de um elemento
+
+// --- Contagens básicas ---
+const totalItens = catalogo.length;
+
+const totalFilmes = catalogo.filter(function(item) {
+  return item.tipo === "filme";
+}).length;
+
+const totalSeries = catalogo.filter(function(item) {
+  return item.tipo === "serie";
+}).length;
+
+const totalNaoAssistidos = catalogo.filter(function(item) {
+  return item.assistido === false;
+}).length;
+
+// --- Média geral (reaproveitamos a lógica do reduce) ---
+const somaParaDOM = catalogo.reduce(function(acumulador, item) {
+  return acumulador + item.nota;
+}, 0);
+const mediaParaDOM = (somaParaDOM / catalogo.length).toFixed(2);
+
+// --- Mini ranking: top 3 notas ---
+// slice() cria uma CÓPIA do array (sem alterar o original)
+// sort() ordena — usamos b.nota - a.nota para ordem decrescente (maior primeiro)
+const ranking = catalogo.slice().sort(function(a, b) {
+  return b.nota - a.nota;
+});
+const top3 = ranking.slice(0, 3); // pega só os 3 primeiros
+
+// --- Monta o HTML do ranking como lista ---
+// map gera um array de strings HTML, join("") junta tudo em uma string só
+const rankingHTML = top3.map(function(item, indice) {
+  return "<li>" + (indice + 1) + "º " + item.titulo + " — nota " + item.nota + "</li>";
+}).join("");
+
+// --- Seleciona a div e insere o conteúdo ---
+const output = document.getElementById("output");
+
+output.innerHTML =
+  "<h2>📊 Resumo do Catálogo</h2>" +
+
+  "<p><strong>Total de itens:</strong> " + totalItens + "</p>" +
+  "<p><strong>Filmes:</strong> " + totalFilmes + "</p>" +
+  "<p><strong>Séries:</strong> " + totalSeries + "</p>" +
+  "<p><strong>Não assistidos:</strong> " + totalNaoAssistidos + "</p>" +
+  "<p><strong>Média geral de notas:</strong> " + mediaParaDOM + "</p>" +
+
+  "<h3>🏆 Top 3 melhores notas</h3>" +
+  "<ol>" + rankingHTML + "</ol>";
