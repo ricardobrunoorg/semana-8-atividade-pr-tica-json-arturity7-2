@@ -166,3 +166,56 @@ if (itemDestaque) {
 } else {
   console.log("Nenhum item com nota maior ou igual a 9 foi encontrado.");
 }
+
+
+// ============================================================
+// B.3-E - AGREGAÇÃO COM reduce
+// ============================================================
+// reduce percorre o array acumulando um valor
+// Recebe dois parâmetros: o acumulador e o item atual
+// O segundo argumento do reduce (0) é o valor inicial do acumulador
+
+console.log("\n=== MÉDIAS DE NOTAS (reduce) ===");
+
+// --- Média geral ---
+// A cada passo, somamos a nota do item ao acumulador
+const somaGeral = catalogo.reduce(function(acumulador, item) {
+  return acumulador + item.nota;
+}, 0);
+
+const mediaGeral = somaGeral / catalogo.length;
+console.log("Média geral de notas:", mediaGeral.toFixed(2));
+
+// --- Média dos assistidos ---
+// Primeiro filtramos só os assistidos, depois calculamos a média deles
+const assistidos = catalogo.filter(function(item) {
+  return item.assistido === true;
+});
+
+const somaAssistidos = assistidos.reduce(function(acumulador, item) {
+  return acumulador + item.nota;
+}, 0);
+
+const mediaAssistidos = somaAssistidos / assistidos.length;
+console.log("Média de notas dos assistidos:", mediaAssistidos.toFixed(2));
+
+
+// ============================================================
+// B.3-F - CHECAGENS COM some E every
+// ============================================================
+// some  → retorna TRUE se AO MENOS UM item passar na condição
+// every → retorna TRUE somente se TODOS os itens passarem
+
+console.log("\n=== CHECAGENS (some e every) ===");
+
+// Existe algum item com ano anterior a 2000?
+const temItemAntigo = catalogo.some(function(item) {
+  return item.ano < 2000;
+});
+console.log("Existe algum item com ano < 2000?", temItemAntigo);
+
+// Todos os itens têm pelo menos 1 gênero?
+const todosTemGenero = catalogo.every(function(item) {
+  return item.generos.length >= 1;
+});
+console.log("Todos os itens têm pelo menos 1 gênero?", todosTemGenero);
