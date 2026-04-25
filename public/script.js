@@ -103,3 +103,66 @@ if (terceiroItem.generos[1]) {
 } else {
   console.log("O item '" + terceiroItem.titulo + "' não tem um segundo gênero.");
 }
+
+
+// ============================================================
+// B.3-A - LISTAGEM COM forEach
+// ============================================================
+// forEach percorre cada item do array e executa uma função
+// Não retorna nada — serve só para executar uma ação por item
+
+console.log("\n=== LISTAGEM DE TÍTULOS (forEach) ===");
+
+catalogo.forEach(function(item) {
+  console.log("- [" + item.tipo + "] " + item.titulo + " (" + item.ano + ")");
+});
+
+
+// ============================================================
+// B.3-B - TRANSFORMAÇÃO COM map
+// ============================================================
+// map percorre o array e RETORNA um novo array transformado
+// O array original não é alterado
+
+console.log("\n=== TÍTULOS EM CAIXA ALTA (map) ===");
+
+const titulosEmCaixaAlta = catalogo.map(function(item) {
+  return item.titulo.toUpperCase();
+});
+
+console.log(titulosEmCaixaAlta);
+
+
+// ============================================================
+// B.3-C - SELEÇÃO COM filter
+// ============================================================
+// filter percorre o array e RETORNA um novo array
+// contendo apenas os itens que passam na condição (true)
+
+console.log("\n=== NÃO ASSISTIDOS (filter) ===");
+
+const naoAssistidos = catalogo.filter(function(item) {
+  return item.assistido === false;
+});
+
+console.log("Quantidade de itens não assistidos:", naoAssistidos.length);
+
+
+// ============================================================
+// B.3-D - BUSCA COM find
+// ============================================================
+// find percorre o array e RETORNA o PRIMEIRO item
+// que satisfaz a condição — ou undefined se não encontrar
+
+console.log("\n=== PRIMEIRO ITEM COM NOTA >= 9 (find) ===");
+
+const itemDestaque = catalogo.find(function(item) {
+  return item.nota >= 9;
+});
+
+if (itemDestaque) {
+  console.log("Título:", itemDestaque.titulo);
+  console.log("Nota:", itemDestaque.nota);
+} else {
+  console.log("Nenhum item com nota maior ou igual a 9 foi encontrado.");
+}
