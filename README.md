@@ -5,15 +5,19 @@ Nesta atividade, você fazer exercícios de programação para vai praticar a ma
 
 ## Informações Gerais
 
-- Nome:
-- Matricula:
+- Nome: Arthur Gabriel de Oliveira Fonseca Santos
+- Matricula: 924860
 
 ## Prints do console do navegador
 
 <<  COLOQUE A IMAGEM - LISTAGEM DE TÍTULOS - AQUI >>
+![Console - listagem de títulos](public/console-listagem.png)
 
 <<  COLOQUE A IMAGEM - CÁLCULO DE MÉDIAS - AQUI >>
+![Console - médias](public/console-medias.png)
 
 <<  COLOQUE A IMAGEM - RESUMO DE VERIFICAÇÕES (SOME E EVERY) - AQUI >>
+![Console - checagens](public/console-checagens.png)
 
 <<  COLOQUE A IMAGEM - PÁGINA COM O RESUMO - AQUI >>
+![Página - resumo](public/pagina-output.png)
